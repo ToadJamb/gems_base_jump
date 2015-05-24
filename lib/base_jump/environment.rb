@@ -12,6 +12,23 @@ module BaseJump
     end
 
     def environment
+      @environment
+    end
+
+    def environment=(value)
+      @environment = normalize(value)
+      ENV[Config.env_var] = @environment.to_s
+    end
+
+    private
+
+    def normalize(env)
+      env =
+        if env.nil? || env.to_s.strip == ''
+          :development
+        else
+          env.to_s.strip.downcase.to_sym
+        end
     end
   end
 end
