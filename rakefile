@@ -1,0 +1,5 @@
+require 'rake_tasks'
+
+require 'gems'
+
+require 'rake_tasks/tasks/gem'

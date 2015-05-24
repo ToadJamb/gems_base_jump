@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    base_jump (0.0.1)
+
+GEM
+  remote: https://www.rubygems.org/
+  specs:
+    gems (0.8.3)
+    rake_tasks (4.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  base_jump!
+  gems
+  rake_tasks
