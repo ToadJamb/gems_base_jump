@@ -3,14 +3,13 @@ module BaseJump
     extend self
 
     def init(app)
-      raise ApplicationInitializedError.new(@app) if defined?(@app)
-      @app = app
-      BaseJump.load_environment
-      @app.extend Environment
-    end
+      raise ApplicationInitializedError.new(Config.app) if Config.app
 
-    def app
-      @app
+      Config.app = app
+
+      BaseJump.load_environment
+
+      Config.app.extend Environment
     end
   end
 end
