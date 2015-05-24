@@ -5,11 +5,11 @@ module BaseJump
     def init(app)
       raise ApplicationInitializedError.new(Config.app) if Config.app
 
+      app.extend Environment
+
       Config.init app
 
       BaseJump.load_environment
-
-      Config.app.extend Environment
     end
   end
 end

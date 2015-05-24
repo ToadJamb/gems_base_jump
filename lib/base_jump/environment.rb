@@ -23,12 +23,11 @@ module BaseJump
     private
 
     def normalize(env)
-      env =
-        if env.nil? || env.to_s.strip == ''
-          :development
-        else
-          env.to_s.strip.downcase.to_sym
-        end
+      if env.nil? || env.to_s.strip == ''
+        :development
+      else
+        env.to_s.strip.downcase.to_sym
+      end
     end
   end
 end

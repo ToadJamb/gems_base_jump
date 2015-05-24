@@ -8,7 +8,7 @@ module BaseJump
     def init(app)
       @app = app
       set_env_var
-      Environment.environment = ENV[@env_var]
+      @app.environment = ENV[@env_var]
     end
 
     private

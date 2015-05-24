@@ -5,7 +5,7 @@ RSpec.describe BaseJump::Config do
 
   let(:app_name) { 'Foo::Bar' }
 
-  let(:app) { Module.new { extend self } }
+  let(:app) { Module.new { extend BaseJump::Environment } }
 
   before { allow(app).to receive(:to_s).and_return app_name }
 
@@ -26,14 +26,14 @@ RSpec.describe BaseJump::Config do
       before { subject.init app }
 
       it 'sets the environment to that value' do
-        expect(BaseJump::Environment.environment).to eq environment.to_sym
+        expect(app.environment).to eq environment.to_sym
       end
     end
 
     context 'given no environment variable matching the root namespace' do
       before { subject.init app }
       it 'sets the environment to development' do
-        expect(BaseJump::Environment.environment).to eq :development
+        expect(app.environment).to eq :development
       end
     end
   end

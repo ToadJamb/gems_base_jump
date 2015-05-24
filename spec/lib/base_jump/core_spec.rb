@@ -32,13 +32,12 @@ RSpec.describe BaseJump do
   describe '.environment? methods' do
     let(:klass) { Module.new { extend self } }
 
-    before { stub_const "#{described_class::Env}", klass }
     before { mock_system(:dir_glob).and_return envs }
 
     before { described_class.load_environment }
 
     shared_examples 'a dynamic method' do |method, actual|
-      subject { described_class::Env }
+      subject { BaseJump::Config.app.env }
 
       context "given the environment is #{actual}" do
         let(:method_name)   { "#{method}?" }
@@ -51,10 +50,20 @@ RSpec.describe BaseJump do
           end.push("config/environments/foo.rb").shuffle
         end
 
+        let(:app) do
+          Module.new do
+            extend BaseJump::Environment
+          end
+        end
+
         before do
-          allow(BaseJump::Environment)
+          allow(BaseJump::Config)
+            .to receive(:app)
+            .and_return app
+
+          allow(BaseJump::Config.app)
             .to receive(:environment)
-            .and_return actual.to_s
+            .and_return actual
         end
 
         describe ".#{method}?" do
