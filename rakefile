@@ -1,5 +1,14 @@
 require 'rake_tasks'
 
 require 'gems'
+require 'cane'
 
 require 'rake_tasks/tasks/gem'
+require 'rake_tasks/tasks/cane'
+
+task :default => []
+Rake::Task[:default].clear_prerequisites
+
+task :default => [
+  :cane,
+]
