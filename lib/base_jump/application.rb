@@ -5,6 +5,8 @@ module BaseJump
     def init(app)
       raise ApplicationInitializedError.new(@app) if defined?(@app)
       @app = app
+      BaseJump.load_environment
+      @app.extend Environment
     end
 
     def app

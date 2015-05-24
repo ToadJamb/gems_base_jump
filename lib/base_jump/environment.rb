@@ -3,4 +3,10 @@ module BaseJump
   module Env
     extend self
   end
+
+  module Environment
+    def env
+      Env
+    end
+  end
 end
