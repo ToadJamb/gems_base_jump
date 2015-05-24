@@ -1,5 +1,11 @@
 require File.expand_path('../../lib/base_jump', __FILE__)
 
+base = File.expand_path(File.dirname(__FILE__))
+path = File.join(base, 'support')
+Dir["#{path}/**/*.rb"].each do |file|
+  require file
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
