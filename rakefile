@@ -5,6 +5,7 @@ require 'cane'
 
 require 'rake_tasks/tasks/gem'
 require 'rake_tasks/tasks/cane'
+require 'rake_tasks/tasks/console'
 require 'rake_tasks/tasks/spec'
 
 task :default => []
