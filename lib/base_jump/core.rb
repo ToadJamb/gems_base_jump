@@ -2,6 +2,18 @@ module BaseJump
   module Core
     extend self
 
+    def init(app)
+      raise ApplicationInitializedError.new(Config.app) if Config.app
+
+      app.extend Environment
+
+      Config.init app
+
+      load_environment
+    end
+
+    private
+
     def load_environment
       System.dir_glob('config/environments/*.rb').each do |file|
         environment = File.basename(file, '.rb')
@@ -11,8 +23,6 @@ module BaseJump
         require_environment file, environment
       end
     end
-
-    private
 
     def add_environment_method(method_name, environment)
       Env.module_eval do
