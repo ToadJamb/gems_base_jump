@@ -2,14 +2,8 @@ module BaseJump
   module Application
     extend self
 
-    def init(app)
-      raise ApplicationInitializedError.new(Config.app) if Config.app
-
-      app.extend Environment
-
-      Config.init app
-
-      BaseJump.load_environment
+    def configure(&block)
+      yield Config if block_given?
     end
   end
 end
