@@ -6,6 +6,7 @@ module BaseJump
       raise ApplicationInitializedError.new(Config.app) if Config.app
 
       app.extend Environment
+      app.extend Application
 
       Config.init app
 

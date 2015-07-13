@@ -43,7 +43,6 @@ RSpec.describe BaseJump do
       end
     end
 
-
     it 'creates boolean methods based on environment files' do
       expect(env).to respond_to :test?
       expect(env).to respond_to :development?
@@ -51,6 +50,15 @@ RSpec.describe BaseJump do
       expect(env).to respond_to :foobar?
 
       expect(env).to_not respond_to :foo?
+    end
+
+    it "extends #{described_class::Application}" do
+      mod = described_class::Application
+      methods = mod.methods - mod.class.methods
+
+      methods.each do |method|
+        expect(subject).to respond_to method
+      end
     end
   end
 
