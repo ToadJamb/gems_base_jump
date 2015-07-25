@@ -8,9 +8,9 @@ RSpec.describe BaseJump do
   describe '.init' do
     subject { BaseJump::Config.app }
 
-    let(:klass)         { Module.new { extend self } }
-    let(:env)           { described_class::Env }
-    let(:glob)          { 'config/environments/*.rb' }
+    let(:klass) { Module.new { extend self } }
+    let(:env)   { described_class::Env }
+    let(:glob)  { 'config/environments/*.rb' }
 
     let(:envs) {[
       'config/environments/test.rb',
