@@ -7,20 +7,19 @@ module BaseJump
 
       app.extend Application
 
+      add_environment_methods
+
       Backpack.init app
 
-      load_environment
+      require_environment
     end
 
     private
 
-    def load_environment
+    def add_environment_methods
       System.dir_glob('config/environments/*.rb').each do |file|
         environment = File.basename(file, '.rb')
-
         add_environment_method "#{environment}?", environment.to_sym
-
-        require_environment file, environment
       end
     end
 
@@ -33,11 +32,10 @@ module BaseJump
       end
     end
 
-    def require_environment(file, environment)
-      full_path = File.expand_path(file)
-      if File.exist?(full_path) && Backpack.app.env.send("#{environment}?")
-        require full_path
-      end
+    def require_environment
+      path = File
+        .expand_path("config/environments/#{Backpack.app.environment}.rb")
+      require path if File.exist?(path)
     end
   end
 
