@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe BaseJump do
   let(:app_namespace) { Module.new }
 
-  before { described_class::Backpack.app = nil }
+  before { described_class::Backpack.instance_variable_set :@app, nil }
 
   describe '.init' do
     subject { BaseJump::Backpack.app }
@@ -21,8 +21,6 @@ RSpec.describe BaseJump do
 
     before { mock_system(:dir_glob).and_return envs }
     before { stub_const "#{described_class::Env}", klass }
-
-    before { BaseJump::Backpack.app = nil }
 
     before { described_class.init app_namespace }
 

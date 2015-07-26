@@ -2,8 +2,8 @@ module BaseJump
   module Backpack
     extend self
 
-    attr_accessor :app
-    attr_accessor :env_var
+    attr_reader :app
+    attr_reader :env_var
 
     def init(app)
       @app = app
