@@ -38,7 +38,7 @@ RSpec.describe BaseJump::Backpack do
     end
   end
 
-  context '.env_var' do
+  describe '.env_var' do
     shared_examples 'the name of the environment variable' do |name, env_var|
       subject { described_class.env_var }
 
@@ -55,5 +55,26 @@ RSpec.describe BaseJump::Backpack do
 
     it_behaves_like 'the name of the environment variable', 'Ab::B', 'AB_ENV'
     it_behaves_like 'the name of the environment variable', 'Ab', 'AB_ENV'
+  end
+
+  describe '.configuration' do
+    subject { described_class.configuration }
+
+    before { @config = described_class.configuration }
+    before { described_class.instance_variable_set :@configuration, nil }
+
+    after  { described_class.instance_variable_set :@configuration, @config }
+
+    it 'is cached' do
+      described_class.instance_variable_set :@configuration, 'test-config'
+      expect(subject).to eq 'test-config'
+    end
+
+    it 'is set to a new configuration object' do
+      allow(BaseJump::Configuration)
+        .to receive(:new)
+        .and_return 'new-config'
+      expect(subject).to eq 'new-config'
+    end
   end
 end

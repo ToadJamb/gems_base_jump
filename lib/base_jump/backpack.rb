@@ -11,6 +11,10 @@ module BaseJump
       @app.environment = ENV[@env_var]
     end
 
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
     private
 
     def set_env_var
