@@ -3,9 +3,9 @@ require 'spec_helper'
 RSpec.describe BaseJump::Application do
   describe '.configure' do
     context 'given a block' do
-      it "yields #{BaseJump::Config}" do
+      it "yields #{BaseJump::Backpack}" do
         described_class.configure do |config|
-          expect(config).to eq BaseJump::Config
+          expect(config).to eq BaseJump::Backpack
         end
       end
     end

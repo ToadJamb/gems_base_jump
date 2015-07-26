@@ -3,12 +3,12 @@ module BaseJump
     extend self
 
     def init(app)
-      raise ApplicationInitializedError.new(Config.app) if Config.app
+      raise ApplicationInitializedError.new(Backpack.app) if Backpack.app
 
       app.extend Environment
       app.extend Application
 
-      Config.init app
+      Backpack.init app
 
       load_environment
     end
@@ -29,14 +29,14 @@ module BaseJump
       Env.module_eval do
         remove_method method_name if respond_to?(method_name)
         define_method method_name do
-          Config.app.environment == environment
+          Backpack.app.environment == environment
         end
       end
     end
 
     def require_environment(file, environment)
       full_path = File.expand_path(file)
-      if File.exist?(full_path) && Config.app.env.send("#{environment}?")
+      if File.exist?(full_path) && Backpack.app.env.send("#{environment}?")
         require full_path
       end
     end

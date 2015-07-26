@@ -1,5 +1,5 @@
 module BaseJump
-  module Config
+  module Backpack
     extend self
 
     attr_accessor :app

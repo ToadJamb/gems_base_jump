@@ -16,7 +16,7 @@ RSpec.describe BaseJump::Environment do
     before { stub_const 'ENV', {} }
 
     before do
-      allow(BaseJump::Config)
+      allow(BaseJump::Backpack)
         .to receive(:env_var)
         .and_return env_var
     end
@@ -32,7 +32,7 @@ RSpec.describe BaseJump::Environment do
         end
 
         it "sets the environment variable to #{output.to_s.inspect}" do
-          expect(ENV[BaseJump::Config.env_var]).to eq output.to_s
+          expect(ENV[BaseJump::Backpack.env_var]).to eq output.to_s
         end
       end
     end

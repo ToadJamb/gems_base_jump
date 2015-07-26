@@ -3,7 +3,7 @@ module BaseJump
     extend self
 
     def configure(&block)
-      yield Config if block_given?
+      yield Backpack if block_given?
     end
   end
 end

@@ -3,10 +3,10 @@ require 'spec_helper'
 RSpec.describe BaseJump do
   let(:app_namespace) { Module.new }
 
-  before { described_class::Config.app = nil }
+  before { described_class::Backpack.app = nil }
 
   describe '.init' do
-    subject { BaseJump::Config.app }
+    subject { BaseJump::Backpack.app }
 
     let(:klass) { Module.new { extend self } }
     let(:env)   { described_class::Env }
@@ -22,7 +22,7 @@ RSpec.describe BaseJump do
     before { mock_system(:dir_glob).and_return envs }
     before { stub_const "#{described_class::Env}", klass }
 
-    before { BaseJump::Config.app = nil }
+    before { BaseJump::Backpack.app = nil }
 
     before { described_class.init app_namespace }
 
@@ -70,7 +70,7 @@ RSpec.describe BaseJump do
     before { described_class.init app_namespace }
 
     shared_examples 'a dynamic method' do |method, actual|
-      subject { BaseJump::Config.app.env }
+      subject { BaseJump::Backpack.app.env }
 
       context "given the environment is #{actual}" do
         let(:method_name)   { "#{method}?" }
@@ -90,11 +90,11 @@ RSpec.describe BaseJump do
         end
 
         before do
-          allow(BaseJump::Config)
+          allow(BaseJump::Backpack)
             .to receive(:app)
             .and_return app
 
-          allow(BaseJump::Config.app)
+          allow(BaseJump::Backpack.app)
             .to receive(:environment)
             .and_return actual
         end

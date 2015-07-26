@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe BaseJump::Config do
+RSpec.describe BaseJump::Backpack do
   subject { described_class }
 
   let(:app_name) { 'Foo::Bar' }
