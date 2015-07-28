@@ -83,7 +83,7 @@ RSpec.describe BaseJump do
 
         let(:app) do
           Module.new do
-            extend BaseJump::Environment
+            extend BaseJump::Application
           end
         end
 

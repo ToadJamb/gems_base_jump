@@ -5,7 +5,7 @@ RSpec.describe BaseJump::Backpack do
 
   let(:app_name) { 'Foo::Bar' }
 
-  let(:app) { Module.new { extend BaseJump::Environment } }
+  let(:app) { Module.new { extend BaseJump::Application } }
 
   before { allow(app).to receive(:to_s).and_return app_name }
 

@@ -5,8 +5,6 @@ module BaseJump
   end
 
   module Environment
-    extend self
-
     def env
       Env
     end

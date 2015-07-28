@@ -5,7 +5,6 @@ module BaseJump
     def init(app)
       raise ApplicationInitializedError.new(Backpack.app) if Backpack.app
 
-      app.extend Environment
       app.extend Application
 
       Backpack.init app
