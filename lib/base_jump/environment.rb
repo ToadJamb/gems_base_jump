@@ -5,8 +5,6 @@ module BaseJump
   end
 
   module Environment
-    extend self
-
     def env
       Env
     end
@@ -17,7 +15,7 @@ module BaseJump
 
     def environment=(value)
       @environment = normalize(value)
-      ENV[Config.env_var] = @environment.to_s
+      ENV[Backpack.env_var] = @environment.to_s
     end
 
     private

@@ -1,14 +1,18 @@
 module BaseJump
-  module Config
+  module Backpack
     extend self
 
-    attr_accessor :app
-    attr_accessor :env_var
+    attr_reader :app
+    attr_reader :env_var
 
     def init(app)
       @app = app
       set_env_var
       @app.environment = ENV[@env_var]
+    end
+
+    def configuration
+      @configuration ||= Configuration.new
     end
 
     private

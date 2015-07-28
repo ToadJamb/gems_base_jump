@@ -1,9 +1,9 @@
 module BaseJump
   module Application
-    extend self
+    include Environment
 
     def configure(&block)
-      yield Config if block_given?
+      yield Backpack.configuration if block_given?
     end
   end
 end
