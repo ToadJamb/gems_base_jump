@@ -11,6 +11,7 @@ GEM
     diff-lcs (1.2.5)
     gems (0.8.3)
     parallel (1.6.1)
+    rake (10.4.2)
     rake_tasks (4.1.0)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
@@ -33,5 +34,6 @@ DEPENDENCIES
   base_jump!
   cane
   gems
+  rake
   rake_tasks
   rspec
