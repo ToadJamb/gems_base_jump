@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe BaseJump::Environment do
   subject { instance }
 
-  let(:klass)    { Class.new.include BaseJump::Environment }
+  let(:klass)    { Class.new { include BaseJump::Environment } }
   let(:instance) { klass.new }
 
   describe '.env' do
