@@ -9,6 +9,8 @@ require 'rake_tasks/tasks/console'
 require 'rake_tasks/tasks/spec'
 require 'rake_tasks/tasks/checksum'
 
+$VERBOSE = true
+
 task :default => []
 Rake::Task[:default].clear_prerequisites
 
