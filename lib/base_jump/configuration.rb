@@ -1,6 +1,5 @@
 module BaseJump
   class Configuration
-    attr_writer :logger
     attr_writer :log_destination
     attr_writer :log_path
     attr_writer :log_level
