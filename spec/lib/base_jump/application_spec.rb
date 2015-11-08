@@ -4,10 +4,11 @@ RSpec.describe BaseJump::Application do
   subject { app }
 
   let(:app) { Module.new { extend BaseJump::Application } }
+
   before { allow(BaseJump::Backpack).to receive(:env_var).and_return 'MY_ENV' }
 
   context 'environment' do
-    it 'works' do
+    it 'is included' do
       app.environment = nil
       expect(app.environment).to eq :development
     end
@@ -16,9 +17,9 @@ RSpec.describe BaseJump::Application do
   describe '.configure' do
     context 'given a block' do
       it "yields #{BaseJump::Backpack}" do
-        app.configure do |config|
-          expect(config).to be_a BaseJump::Configuration
-          expect(config).to eq BaseJump::Backpack.configuration
+        app.configure do |conf|
+          expect(conf).to be_a BaseJump::Configuration
+          expect(conf).to eq BaseJump::Backpack.configuration
         end
       end
     end
@@ -27,6 +28,22 @@ RSpec.describe BaseJump::Application do
       it 'works' do
         app.configure
       end
+    end
+  end
+
+  describe '.logger' do
+    subject { app.logger }
+
+    let(:config) { BaseJump::Configuration.new }
+    let(:logger) { 'current-logger' }
+
+    before do
+      allow(BaseJump::Backpack).to receive(:configuration).and_return config
+      allow(config).to receive(:logger).and_return logger
+    end
+
+    it "returns the #{BaseJump::Backpack} logger" do
+      expect(subject).to eq logger
     end
   end
 end

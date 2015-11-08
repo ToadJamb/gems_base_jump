@@ -39,6 +39,21 @@ BaseJump will look for an environment variable named `MYAPP_ENV`
 to determine the environment.
 
 
+Configuration
+-------------
+
+BaseJump attempts to provide sensible defaults for all configuration options,
+but any/all of the following may be overridden
+in the individual environment files.
+
+config/environments/development.rb:
+
+    MyApp::App.configure do |config|
+      config.log_destination = path_to_log
+      config.logger          = my_logger
+    end
+
+
 Environment
 -----------
 
