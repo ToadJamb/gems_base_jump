@@ -12,6 +12,7 @@ module BaseJump
       Backpack.init app
 
       require_environment
+      require_initializers
     end
 
     private
@@ -39,6 +40,45 @@ module BaseJump
       path = File
         .expand_path("config/environments/#{Backpack.app.environment}.rb")
       require path if File.exist?(path)
+    end
+
+    def require_initializers
+      initializers = config.initializers.dup
+
+      initializers.map! do |initializer|
+        find_initializer_for initializer
+      end
+
+      initializers += find_initializers_without(initializers)
+
+      initializers.each { |i| require i }
+    end
+
+    def find_initializers_without(initializers)
+      globbed = []
+
+      path = File.expand_path('config/initializers/**/*.rb')
+      System.dir_glob(path).each do |initializer|
+        globbed << initializer unless initializers.include?(initializer)
+      end
+
+      globbed
+    end
+
+    def find_initializer_for(initializer)
+      return initializer if initializer[0] == '/'
+
+      initializer += '.rb' if File.extname(initializer) == ''
+
+      unless initializer.match(/^config\/initializers/)
+        initializer = File.join('config', 'initializers', initializer)
+      end
+
+      File.expand_path initializer
+    end
+
+    def config
+      Backpack.configuration
     end
   end
 
