@@ -4,6 +4,8 @@ module BaseJump
     attr_writer :log_path
     attr_writer :log_level
 
+    attr_accessor :initializers
+
     def initialize
       @log_file = "#{Backpack.app.environment}.log"
       @log_path = 'log'
@@ -13,6 +15,8 @@ module BaseJump
       else
         @log_level = Logger::INFO
       end
+
+      @initializers = []
     end
 
     def log_destination
