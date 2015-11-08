@@ -33,6 +33,9 @@ module BaseJump
     end
 
     def require_environment
+      app_path = File.expand_path('config/application.rb')
+      require app_path if File.exist?(app_path)
+
       path = File
         .expand_path("config/environments/#{Backpack.app.environment}.rb")
       require path if File.exist?(path)
