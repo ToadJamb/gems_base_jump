@@ -10,7 +10,7 @@ module BaseJump
       @log_path = 'log'
 
       if [:test, :development].include?(Backpack.app.environment)
-        @log_level = Logger::INFO
+        @log_level = Logger::DEBUG
       else
         @log_level = Logger::INFO
       end
