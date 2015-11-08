@@ -30,4 +30,20 @@ RSpec.describe BaseJump::Application do
       end
     end
   end
+
+  describe '.logger' do
+    subject { app.logger }
+
+    let(:config) { BaseJump::Configuration.new }
+    let(:logger) { 'current-logger' }
+
+    before do
+      allow(BaseJump::Backpack).to receive(:configuration).and_return config
+      allow(config).to receive(:logger).and_return logger
+    end
+
+    it "returns the #{BaseJump::Backpack} logger" do
+      expect(subject).to eq logger
+    end
+  end
 end

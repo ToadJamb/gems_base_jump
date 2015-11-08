@@ -3,7 +3,17 @@ module BaseJump
     include Environment
 
     def configure(&block)
-      yield Backpack.configuration if block_given?
+      yield configuration if block_given?
+    end
+
+    def logger
+      configuration.logger
+    end
+
+    private
+
+    def configuration
+      Backpack.configuration
     end
   end
 end
