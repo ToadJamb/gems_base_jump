@@ -12,7 +12,9 @@ RSpec.describe BaseJump::ColorHelper do
 
     let(:config) { instance_double BaseJump::Configuration }
 
-    before { allow(BaseJump::Backpack).to receive(:configuration).and_return config }
+    before do
+      allow(BaseJump::Backpack).to receive(:configuration).and_return config
+    end
 
     context 'given colorize is defined' do
       before { allow(config).to receive(:colorize?).and_return true }
