@@ -15,10 +15,7 @@ module BaseJump
       @color_log = false
       @color_log = true if Backpack.app.environment == :development
 
-      @log_level = Logger::INFO
-      if [:test, :development].include?(Backpack.app.environment)
-        @log_level = Logger::DEBUG
-      end
+      init_log_level
 
       @colorize = false
 
@@ -66,6 +63,15 @@ module BaseJump
       require 'colorize'
       String.disable_colorization = false
       @colorize = true
+    end
+
+    private
+
+    def init_log_level
+      @log_level = Logger::INFO
+      if [:test, :development].include?(Backpack.app.environment)
+        @log_level = Logger::DEBUG
+      end
     end
   end
 end
