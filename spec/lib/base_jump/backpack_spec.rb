@@ -60,6 +60,8 @@ RSpec.describe BaseJump::Backpack do
   describe '.configuration' do
     subject { described_class.configuration }
 
+    before { described_class.init app }
+
     before { @config = described_class.configuration }
     before { described_class.instance_variable_set :@configuration, nil }
 
