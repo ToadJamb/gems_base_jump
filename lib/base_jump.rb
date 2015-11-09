@@ -4,6 +4,7 @@ lib = File.expand_path('../base_jump', __FILE__)
 
 require File.join(lib, 'errors')
 require File.join(lib, 'system')
+require File.join(lib, 'color_helper')
 require File.join(lib, 'configuration')
 require File.join(lib, 'backpack')
 require File.join(lib, 'environment')
