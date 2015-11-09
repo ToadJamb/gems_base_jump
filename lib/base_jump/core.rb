@@ -58,7 +58,7 @@ module BaseJump
       globbed = []
 
       path = File.expand_path('config/initializers/**/*.rb')
-      System.dir_glob(path).each do |initializer|
+      Dir[path].each do |initializer|
         globbed << initializer unless initializers.include?(initializer)
       end
 
