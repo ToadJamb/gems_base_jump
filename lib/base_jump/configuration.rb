@@ -59,7 +59,7 @@ module BaseJump
       @colorize
     end
 
-    def colorize
+    def colorize!
       require 'colorize'
       String.disable_colorization = false
       @colorize = true
