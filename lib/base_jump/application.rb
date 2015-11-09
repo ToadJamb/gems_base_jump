@@ -10,6 +10,29 @@ module BaseJump
       configuration.logger
     end
 
+    def database_connect!(config = database_config)
+      ActiveRecord::Base.establish_connection config
+    end
+
+    def database_config(env = nil)
+      require 'yaml' unless defined?(YAML)
+
+      env ||= environment
+
+      conf = nil
+
+      database_url = ENV['DATABASE_URL']
+
+      if database_url && database_url.strip != ''
+        conf = database_url
+      else
+        conf = YAML.load(File.open('config/database.yml'))
+        conf = conf[env.to_s]
+      end
+
+      conf
+    end
+
     def run_quietly(&block)
       return unless block_given?
 

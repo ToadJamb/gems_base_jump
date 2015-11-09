@@ -15,6 +15,13 @@ module BaseJump
       require_initializers
     end
 
+    def load_tasks!
+      path = File.expand_path('../tasks/**/*.rake', __FILE__)
+      System.dir_glob(path).each do |file|
+        load file
+      end
+    end
+
     private
 
     def add_environment_methods
