@@ -5,7 +5,7 @@ RSpec.describe BaseJump::Application do
 
   let(:app) { Module.new { extend BaseJump::Application } }
 
-  before { allow(BaseJump::Backpack).to receive(:env_var).and_return 'MY_ENV' }
+  before { BaseJump::Backpack.init app }
 
   context 'environment' do
     it 'is included' do
@@ -16,7 +16,7 @@ RSpec.describe BaseJump::Application do
 
   describe '.configure' do
     context 'given a block' do
-      it "yields #{BaseJump::Backpack}" do
+      it "yields #{BaseJump::Backpack}.configuration" do
         app.configure do |conf|
           expect(conf).to be_a BaseJump::Configuration
           expect(conf).to eq BaseJump::Backpack.configuration
