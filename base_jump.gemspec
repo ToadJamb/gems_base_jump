@@ -14,6 +14,8 @@ Gem::Specification.new do |spec|
 
   spec.extra_rdoc_files << 'readme.md'
 
+  spec.add_dependency 'colorize'
+
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rake_tasks'
   spec.add_development_dependency 'gems'

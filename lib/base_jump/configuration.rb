@@ -3,6 +3,8 @@ module BaseJump
     attr_writer :log_destination
     attr_writer :log_path
     attr_writer :log_level
+    attr_writer :custom_log_formatter
+    attr_writer :color_log
 
     attr_accessor :initializers
 
@@ -10,11 +12,15 @@ module BaseJump
       @log_file = "#{Backpack.app.environment}.log"
       @log_path = 'log'
 
+      @color_log = false
+      @color_log = true if Backpack.app.environment == :development
+
+      @log_level = Logger::INFO
       if [:test, :development].include?(Backpack.app.environment)
         @log_level = Logger::DEBUG
-      else
-        @log_level = Logger::INFO
       end
+
+      @colorize = false
 
       @initializers = []
     end
@@ -37,9 +43,29 @@ module BaseJump
       @logger
     end
 
+    def custom_log_formatter
+      return @custom_log_formatter if defined?(@custom_log_formatter)
+      @custom_log_formatter = CustomLogFormatter.new
+    end
+
     def logger=(new_logger)
       new_logger.level = @log_level
+      new_logger.formatter = custom_log_formatter
       @logger = new_logger
+    end
+
+    def color_log?
+      !!@color_log && colorize?
+    end
+
+    def colorize?
+      @colorize
+    end
+
+    def colorize
+      require 'colorize'
+      String.disable_colorization = false
+      @colorize = true
     end
   end
 end

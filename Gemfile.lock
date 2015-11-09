@@ -2,12 +2,14 @@ PATH
   remote: .
   specs:
     base_jump (0.0.1)
+      colorize
 
 GEM
   remote: https://www.rubygems.org/
   specs:
     cane (2.6.2)
       parallel
+    colorize (0.7.7)
     diff-lcs (1.2.5)
     gems (0.8.3)
     parallel (1.6.1)
@@ -37,3 +39,6 @@ DEPENDENCIES
   rake
   rake_tasks
   rspec
+
+BUNDLED WITH
+   1.10.6
