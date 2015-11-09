@@ -48,6 +48,7 @@ module BaseJump
     def logger=(new_logger)
       new_logger.level = @log_level
       new_logger.formatter = custom_log_formatter
+      ActiveRecord::Base.logger = new_logger if defined?(ActiveRecord)
       @logger = new_logger
     end
 
