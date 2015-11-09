@@ -88,6 +88,19 @@ module BaseJumpRakeTasks
     def load_environment(env = nil)
       app.logger.level = Logger::INFO
       @config = app.database_config(env)
+      driver = @config['adapter']
+
+      unless drivers.include?(driver)
+        msg = "#{BaseJump} does not support the chosen driver (#{driver}). "
+        msg += "Supported drivers are: #{drivers}."
+        raise ArgumentError.new(msg)
+      end
+    end
+
+    def drivers
+      [
+        'sqlite3',
+      ]
     end
   end
 
