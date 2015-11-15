@@ -14,6 +14,10 @@ module BaseJump
       ActiveRecord::Base.establish_connection config
     end
 
+    def colorize(text, color = nil)
+      ColorHelper.colorize text, color
+    end
+
     def database_config(env = nil)
       require 'yaml' unless defined?(YAML)
 
