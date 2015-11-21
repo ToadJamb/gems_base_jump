@@ -28,6 +28,7 @@ module BaseJump
       log_path = File.expand_path(File.join(@log_path, @log_file))
       FileUtils.mkdir_p File.dirname(log_path)
       @log_destination = File.open(log_path, 'a+')
+      @log_destination.sync = true
 
       @log_destination
     end
