@@ -24,8 +24,6 @@ module BaseJump
       !!text.match(/\e\[\d{1,2};/)
     end
 
-    private
-
     def index
       @index ||= -1
     end
