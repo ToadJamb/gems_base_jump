@@ -12,6 +12,7 @@ module BaseJump
       Backpack.init app
 
       require_environment
+      load_dotenv if defined?(Dotenv)
       require_initializers
     end
 
@@ -23,6 +24,14 @@ module BaseJump
     end
 
     private
+
+    def load_dotenv
+      dotenvs = []
+      dotenvs <<  "config/dotenv/#{Backpack.app.environment}.env"
+      dotenvs << '.env'
+
+      Dotenv.load(*dotenvs)
+    end
 
     def add_environment_methods
       System.dir_glob('config/environments/*.rb').each do |file|
