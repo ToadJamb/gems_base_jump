@@ -121,7 +121,7 @@ module BaseJump
     end
 
     def format_elapsed(interval, descriptor)
-      descriptor = descriptor.pluralize(interval)
+      descriptor = "#{descriptor}s" if interval != 1
       interval   = '%.2f' % interval
 
       ColorHelper.colorize "#{interval} #{descriptor}", :light_magenta
