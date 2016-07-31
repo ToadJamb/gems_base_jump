@@ -1,12 +1,7 @@
 TODO
 ====
 
-* Logging
-  * log level via environment variable
-* Dotenv
 * Database support
-  * ActiveRecord
-  * SqlLite
   * pg
 
 
@@ -18,3 +13,8 @@ Complete
 * Logging
   * optional color
   * set formatter
+  * log level via environment variable
+* Database support
+  * ActiveRecord
+  * SqlLite
+* Dotenv
