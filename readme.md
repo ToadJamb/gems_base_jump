@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ToadJamb/gems_base_jump.svg?branch=master)](https://travis-ci.org/ToadJamb/gems_base_jump)
+
 BaseJump
 ========
 
